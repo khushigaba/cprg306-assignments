@@ -1,5 +1,6 @@
 "use client";
 
+//importing from auth-context
 import { useUserAuth } from "./_utils/auth-context";
 
 const LandingPage = () => {
