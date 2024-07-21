@@ -13,7 +13,7 @@ const LandingPage = () => {
             Welcome, {user.displayName} ({user.email})
           </p>
           <button onClick={firebaseSignOut}>Logout  </button>
-          <a href="/week-8/shopping-list">  Go to Shopping List  </a>
+          <a href="/week-9/shopping-list">  Go to Shopping List  </a>
         </>
       ) : (
         <button onClick={gitHubSignIn}>Login with GitHub</button>

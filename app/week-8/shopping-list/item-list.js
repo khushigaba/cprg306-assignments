@@ -4,7 +4,6 @@ import Item from "./item";
 import { useUserAuth } from "../_utils/auth-context";
  
 export default function ItemList({ items, onItemSelect }) {
-  // Initialize state variable
   const [sortBy, setSortBy] = useState("name");
   const { firebaseSignOut } = useUserAuth();
   let sortedItems = [...items];
