@@ -7,7 +7,7 @@ const LandingPage = () => {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   return (
-    <main>
+    <>
       {user ? (
         <>
           <p>
@@ -19,7 +19,8 @@ const LandingPage = () => {
       ) : (
         <button onClick={gitHubSignIn}>Login with GitHub</button>
       )}
-    </main>
+    
+      </>
   );
 };
 
