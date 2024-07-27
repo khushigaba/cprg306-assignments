@@ -7,29 +7,9 @@ import itemsData from './item.json';
 import { addItem, getItems, deleteItem } from '../_services/shopping-list-services';
 import { useUserAuth } from '../_utils/auth-context';
 
-export async function handleGetItem(userId, itemId, setItems) {
-  try {
-      const item = await getItem(userId, itemId);
-      setItems(item);
-      console.log(item);
-  } catch (error) {
-      console.error("Error getting item:", error);
-  }
-}
-
-export async function handleDeleteItem(userId, itemId) {
-  try {
-      await deleteItem(userId, itemId);
-      console.log(`Deleted item with ID: ${itemId}`);
-      // Update the UI or state to reflect the deleted item
-  } catch (error) {
-      console.error("Error deleting item:", error);
-  }
-}
-
 export default function Page() {
 
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState('');
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
@@ -58,11 +38,21 @@ export default function Page() {
     setSelectedItemName(cleanName);
   };
 
+  async function handleGetItem() {
+        const item = await getItems(user.uid);
+        setItems(item);
+  }
+
   return (
-    <div style={{ display: 'flex' }}>
+    <div className="flex">
+      <button className="bg-blue-700 p-1 m-2 w-28 h-12" onClick={handleGetItem}>
+        get item
+      </button>
       <div style={{ flex: 1 }}>
+    
+      
         <NewItem onAddItem={handleAddItem} />
-        <ItemList items={items} onItemSelect={handleItemSelect} />
+        <ItemList items={items} onItemSelect={handleItemSelect}/>
       </div>
       <div style={{ flex: 1 }}>
         <MealIdeas ingredient={selectedItemName} />

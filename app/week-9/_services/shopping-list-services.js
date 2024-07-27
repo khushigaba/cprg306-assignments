@@ -1,7 +1,7 @@
 import { db } from "../_utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
 
-export async function getItems (userId) {
+async function getItems (userId) {
     const items = [];
     const docRef = query(collection(db, "users",userId,"items"))
     const documents = await getDocs(docRef);
@@ -13,10 +13,10 @@ export async function getItems (userId) {
                     id: document.id,
                     ...document.data()
                 }
-                item.push(item)
+                items.push(item)
             }
         )
-        return item;
+        return items;
 
     }
     else{
@@ -25,7 +25,7 @@ export async function getItems (userId) {
 };
   
 
-export async function addItem(userId, item) {
+async function addItem(userId, item) {
     if(!item.name || !item.quantity || !item.category)
         throw new Error("Item properties not complete");
     try{
@@ -39,7 +39,4 @@ export async function addItem(userId, item) {
 };
 
   
-export const deleteItem = async (userId, itemId) => {
-    const itemRef = doc(db, `users/${userId}/items`, itemId);
-    await deleteDoc(itemRef);
-};
+export {addItem, getItems}

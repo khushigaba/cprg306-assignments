@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Item from "./item";
 import { useUserAuth } from "../_utils/auth-context";
-import { handleGetItem, handleDeleteItem} from "./page";
 
 export default function ItemList({ items, onItemSelect }) {
   // Initialize state variable
@@ -44,18 +43,7 @@ export default function ItemList({ items, onItemSelect }) {
       <button className="bg-orange-700 p-1 m-2 w-28" onClick={SignOut}>
         Sign Out
       </button>
-      <button
-        className="bg-orange-700 p-1 m-2 w-28"
-        onClick={handleGetItem}
-      >
-        Get Item
-      </button>
-      <button
-        className="bg-orange-700 p-1 m-2 w-28"
-        onClick={handleDeleteItem}
-      >
-        Delete Item
-      </button>
+    
  
       {/* Render sorted items */}
       {sortedItems.map((item) => (
